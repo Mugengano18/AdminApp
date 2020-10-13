@@ -132,8 +132,11 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                             String catName = documentSnapshot.getString("CAT" + String.valueOf(i) +"_NAME");
                             String catid = documentSnapshot.getString("CAT" + String.valueOf(i) + "_ID");
                             catList.add(new CategoryModel(catid,catName));
-                            if (i==3){
+                            if (nbrofcat == 3){
                                 addCatBut.setVisibility(View.GONE);
+                            }
+                            else {
+                                addCatBut.setVisibility(View.VISIBLE);
                             }
                         }
 

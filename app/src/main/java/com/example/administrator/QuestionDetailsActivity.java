@@ -173,7 +173,7 @@ public class QuestionDetailsActivity extends AppCompatActivity implements View.O
 
                                         quesList.add(new QuestionModel(
                                                 doc_id,
-                                                qStr,aStr,bStr,cStr,Integer.valueOf(ansStr)
+                                                qStr,aStr,bStr,cStr,ansStr
                                         ));
 
                                         loadingDialog.dismiss();
@@ -227,7 +227,7 @@ public class QuestionDetailsActivity extends AppCompatActivity implements View.O
                         quesList.get(qID).setOptionA(aStr);
                         quesList.get(qID).setOptionB(bStr);
                         quesList.get(qID).setOptionC(cStr);
-                        quesList.get(qID).setCorrectAns(Integer.valueOf(cStr));
+                        quesList.get(qID).setCorrectAns(cStr);
 
                         loadingDialog.dismiss();
                         QuestionDetailsActivity.this.finish();

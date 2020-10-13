@@ -134,8 +134,11 @@ public class SubCategoryActivity extends AppCompatActivity implements View.OnCli
                             long lname = (long) documentSnapshot.get("M" + String.valueOf(i) + "_NAME");
                             String lid = documentSnapshot.getString("M" + String.valueOf(i) + "_ID");
                             level_list.add(new SubCatModel(lid,lname));
-                            if (i==3){
+                            if (lname == 3){
                                 addSubBut.setVisibility(View.GONE);
+                            }
+                            else {
+                                addSubBut.setVisibility(View.VISIBLE);
                             }
                         }
                         subCatAdapter = new SubCatAdapter(level_list);

@@ -132,8 +132,11 @@ public class SetsActivity extends AppCompatActivity implements View.OnClickListe
                             String setName = documentSnapshot.getString("SET" + String.valueOf(i) + "_NAME");
                             String setid = documentSnapshot.getString("SET" + String.valueOf(i) + "_ID");
                             setList.add(new SetModel(setid,setName));
-                            if (i==3){
+                            if (count == 3){
                                 addSetB.setVisibility(View.GONE);
+                            }
+                            else {
+                                addSetB.setVisibility(View.VISIBLE);
                             }
                         }
 

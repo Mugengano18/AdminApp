@@ -7,10 +7,10 @@ public class QuestionModel {
     private String optionA;
     private String optionB;
     private String optionC;
-    private  int correctAns;
+    private String correctAns;
 
 
-    public QuestionModel(String quesID, String question, String optionA, String optionB, String optionC, int correctAns) {
+    public QuestionModel(String quesID, String question, String optionA, String optionB, String optionC, String correctAns) {
         this.quesID = quesID;
         this.question = question;
         this.optionA = optionA;
@@ -59,11 +59,11 @@ public class QuestionModel {
         this.optionC = optionC;
     }
 
-    public int getCorrectAns() {
+    public String getCorrectAns() {
         return correctAns;
     }
 
-    public void setCorrectAns(int correctAns) {
+    public void setCorrectAns(String correctAns) {
         this.correctAns = correctAns;
     }
 }
