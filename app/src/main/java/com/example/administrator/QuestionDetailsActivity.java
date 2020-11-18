@@ -71,7 +71,7 @@ public class QuestionDetailsActivity extends AppCompatActivity implements View.O
             qID = getIntent().getIntExtra("Q_ID",0);
 //            getSupportActionBar().setTitle("QUESTION " +String.valueOf(qID + 1));
             loadData(qID);
-            addQB.setText("UPDATE");
+
         }
         else {
 //            getSupportActionBar().setTitle("QUESTION " +  String.valueOf(quesList.size() + 1));
@@ -123,14 +123,7 @@ public class QuestionDetailsActivity extends AppCompatActivity implements View.O
 
 
 
-    private void loadData(int qID) {
 
-        ques.setText(quesList.get(qID).getQuestion());
-        optionA.setText(quesList.get(qID).getOptionA());
-        optionB.setText(quesList.get(qID).getOptionB());
-        optionC.setText(quesList.get(qID).getOptionC());
-        answer.setText(String.valueOf(quesList.get(qID).getCorrectAns()));
-    }
 
 
     private void addNewQuestion() {
@@ -149,8 +142,13 @@ public class QuestionDetailsActivity extends AppCompatActivity implements View.O
         quesData.put("C",cStr);
         quesData.put("ANSWER",ansStr);
 
-        String doc_id = firestore.collection("DETOUR").document(curr_set_id).collection("CAT").document(curr_cat_id)
-                .collection("SubCat").document(curr_sub_id).collection("QUESTION").document().getId();
+
+
+        String set_id = firestore.collection("DETOUR").document().getId();
+        String cate_id = firestore.collection("DETOUR").document(set_id).collection("CAT").document().getId();
+        String M_id = firestore.collection("DETOUR").document(set_id).collection("CAT").document(cate_id).collection("SubCat").document().getId();
+        String doc_id = firestore.collection("DETOUR").document(set_id).collection("CAT").document(cate_id)
+                .collection("SubCat").document(M_id).collection("QUESTION").document().getId();
 
         firestore.collection("DETOUR").document(curr_set_id).collection("CAT").document(curr_cat_id)
                 .collection("SubCat").document(curr_sub_id).collection("QUESTION").document(doc_id)
@@ -199,6 +197,14 @@ public class QuestionDetailsActivity extends AppCompatActivity implements View.O
     }
 
 
+    private void loadData(int qID) {
+
+        ques.setText(quesList.get(qID).getQuestion());
+        optionA.setText(quesList.get(qID).getOptionA());
+        optionB.setText(quesList.get(qID).getOptionB());
+        optionC.setText(quesList.get(qID).getOptionC());
+        answer.setText(quesList.get(qID).getCorrectAns());
+    }
 
     private void editQuestion() {
         String curr_set_id = setList.get(selected_set_index).getId();
@@ -212,6 +218,7 @@ public class QuestionDetailsActivity extends AppCompatActivity implements View.O
         quesData.put("B",bStr);
         quesData.put("C",cStr);
         quesData.put("ANSWER",ansStr);
+
 
 
         firestore.collection("DETOUR").document(curr_set_id).collection("CAT")

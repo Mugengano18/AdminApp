@@ -166,7 +166,7 @@ public class SubCategoryActivity extends AppCompatActivity implements View.OnCli
 
 
         Map<String,Object> qdata = new ArrayMap<>();
-        qdata.put("COUNT",0);
+        qdata.put("COUNT","0");
 
 
 

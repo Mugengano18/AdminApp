@@ -7,7 +7,7 @@ public class QuestionModel {
     private String optionA;
     private String optionB;
     private String optionC;
-    private String correctAns;
+    private  String correctAns;
 
 
     public QuestionModel(String quesID, String question, String optionA, String optionB, String optionC, String correctAns) {

@@ -60,13 +60,13 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
 
         public void setData(int position, QuestionAdapter questionAdapter) {
-            title.setText("QUESTION" + String.valueOf(position +1));
+            title.setText("QUESTION" + String.valueOf(position + 1));
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(itemView.getContext(),QuestionDetailsActivity.class);
-                    intent.putExtra("ACTION",position);
+                    intent.putExtra("ACTION","EDIT");
                     intent.putExtra("Q_ID",position);
                     itemView.getContext().startActivity(intent);
                 }
