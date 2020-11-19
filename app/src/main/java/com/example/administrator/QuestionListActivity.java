@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -49,12 +50,15 @@ public class QuestionListActivity extends AppCompatActivity implements View.OnCl
     private QuestionAdapter questionAdapter;
     private FirebaseFirestore firestore;
     private Dialog loadingDialog;
+    public Dialog mDialog;
+    public Button mDialogyes,mDialogno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_list);
         ButterKnife.bind(this);
 
+        createDialog();
 
         Toolbar toolbar = findViewById(R.id.q_toolbar);
         setSupportActionBar(toolbar);
@@ -93,6 +97,7 @@ public class QuestionListActivity extends AppCompatActivity implements View.OnCl
             Intent intent = new Intent(QuestionListActivity.this,QuestionDetailsActivity.class);
             intent.putExtra("ACTION","ADD");
             startActivity(intent);
+            finish();
         }
     }
 
@@ -135,6 +140,12 @@ public class QuestionListActivity extends AppCompatActivity implements View.OnCl
                                     quesDoc.getString("ANSWER")
 
                             ));
+                            if (Integer.valueOf(count) == 1){
+                                addQB.setVisibility(View.GONE);
+                            }
+                            else {
+                                addQB.setVisibility(View.VISIBLE);
+                            }
                         }
                         questionAdapter = new QuestionAdapter(quesList);
                         quesView.setAdapter(questionAdapter);
@@ -171,5 +182,12 @@ public class QuestionListActivity extends AppCompatActivity implements View.OnCl
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void createDialog() {
+        mDialog = new Dialog(this);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mDialog.setContentView(R.layout.dialog_exist);
+
     }
 }
